@@ -96,8 +96,8 @@ Três versões — escolha a que combina mais com sua voz. Todas escritas pra sa
 **Ordem sugerida de imagens no post (prints reais, conferidos contra a execução do SQL):**
 1. `06_prints/capa_linkedin.png` — abre com os 3 números que prendem atenção (TPV, taxa de aprovação, transações)
 2. `06_prints/print_dashboard_final.png` — dashboard completo do Power BI (print real, tirado depois de fechar o modelo)
-3. `06_prints/print_sql_ranking_lojistas.png` — mostra o SQL de verdade (window function RANK)
-4. `06_prints/print_sql_evolucao_mensal.png` — window function LAG, crescimento MoM
+3. `06_prints/print_sql_modalidade_mdr.png` — mostra o SQL de verdade (MDR médio e ticket médio por modalidade)
+4. `06_prints/print_sql_percentis_segmento.png` — PERCENTILE_CONT, distribuição de ticket por segmento de lojista
 
 **Melhor horário para publicar:** terça a quinta, 8h-10h ou 18h-20h.
 
