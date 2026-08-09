@@ -1,8 +1,6 @@
-🏷️ Requisitos & Arquitetura
+# Panorama de Pagamentos de uma Adquirente — Documentação do Projeto
 
-# Análise de Dados na Prática: Panorama de Pagamentos de uma Adquirente
-
-Projeto de portfólio de Vitor Franca, engenheiro civil migrando para análise de dados. Este documento segue o modelo de documentação padrão do portfólio (`MODELO_DOCUMENTACAO_ANALISE_DADOS.md`) — mesma estrutura usada nos outros projetos, só trocando o domínio e os dados.
+Projeto de portfólio de Vitor França, engenheiro civil em transição para análise de dados.
 
 Repositório: `projeto-adquirencia-pagamentos` (GitHub) · Dashboard: Power BI
 
@@ -76,11 +74,18 @@ Camada do Power BI onde ficam as tabelas, relacionamentos e medidas — a base s
 
 ## ◾ Fluxo das Ferramentas (Arquitetura do Projeto)
 
-![Pipeline de Ferramentas — Python, CSV, PostgreSQL, Power BI, GitHub, LinkedIn](fluxograma_ferramentas.png)
-
-Mesmo diagrama gerado no Claude Design usado nos outros projetos do portfólio (prompt salvo em `PROMPTS_CLAUDE_DESIGN.md`) — o pipeline de ferramentas é idêntico entre os projetos, só muda o domínio dos dados. Não precisa gerar um novo diagrama pra isso.
+```mermaid
+flowchart LR
+    A["Python\ngera a base sintética"] --> B["CSV\nlojistas · maquininhas · transacoes"]
+    B --> C["PostgreSQL\nmodelagem, limpeza e análise"]
+    C --> D["Power BI\ndashboard executivo"]
+    D --> E["GitHub\ncódigo e documentação"]
+    E --> F["LinkedIn\ndivulgação do projeto"]
+```
 
 Papel de cada etapa no pipeline: Python entrega os dados brutos em CSV; PostgreSQL é onde o dado é modelado, limpo e analisado (é daqui que saem os números oficiais do projeto); Power BI transforma o resultado das análises num dashboard visual; GitHub documenta e publica o código e os resultados; LinkedIn divulga o projeto pronto.
+
+![Pipeline de Ferramentas](06_prints/fluxograma_ferramentas.png)
 
 ---
 
@@ -154,8 +159,6 @@ GUIA_POWER_BI.md
 05_post_linkedin.md
 ```
 
-Regra de conteúdo do README: título, base de dados, como o projeto foi montado, estrutura do repositório, o que o dashboard mostra, rodando localmente, autor.
-
 ---
 
 ## 🎲 Dataset - Informações
@@ -205,7 +208,7 @@ Colunas
 
 `lojista_id` conecta `lojistas` a `transacoes` e a `maquininhas`. `maquininha_id` conecta `maquininhas` a `transacoes`. `transacoes` é a tabela fato usada para medir TPV, MDR, taxa de aprovação e evolução mensal.
 
-### Números reais confirmados (base de verdade — não inventar)
+### Números confirmados
 
 * 60.000 transações · 54.693 aprovadas · 4.114 negadas · 1.193 chargebacks
 * Taxa de aprovação geral: 91,16% · Chargeback rate: 1,99%
@@ -215,11 +218,11 @@ Colunas
 * TPV mensal: de R$ 489.705,76 em janeiro a R$ 1.038.482,90 em dezembro, com salto de +32,81% em novembro
 * Top motivo de negada: cartão bloqueado (17,94% das negadas) · Top motivo de chargeback: duplicidade de cobrança (21,96% dos chargebacks)
 
-Esses números vieram de execução real de SQL contra a base — qualquer texto novo (README, post do LinkedIn, este documento) tem que bater com eles.
+Esses números vieram de execução real de SQL contra a base.
 
 ---
 
-## 📋 Checklist de Execução (substitui os capítulos de vídeo — este projeto não tem vídeo)
+## Checklist de Execução
 
 1. Definir o domínio do projeto (adquirência de pagamentos) e o escopo de dados
 2. Gerar a base sintética em Python, calibrada com padrões de mercado reais
