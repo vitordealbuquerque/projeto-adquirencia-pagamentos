@@ -31,7 +31,6 @@ projeto-adquirencia-pagamentos/
 ├── README.md
 ├── DOCUMENTACAO_PROJETO.md           # documentação completa do projeto (conceitos, dataset, checklist)
 ├── GUIA_POWER_BI.md                  # passo a passo do dashboard: modelo, medidas DAX, gráficos
-├── 00_gerar_base.py                  # script Python que gerou a base sintética
 ├── 02_sql/
 │   ├── 01_criar_tabelas.sql          # DDL + índices + constraints
 │   ├── 02_carregar_dados.sql         # COPY dos CSV
@@ -47,8 +46,8 @@ projeto-adquirencia-pagamentos/
     ├── fluxograma_ferramentas.png    # pipeline de ferramentas (Python → PostgreSQL → Power BI → GitHub)
     ├── capa_linkedin.png             # capa com os KPIs principais
     ├── print_dashboard_final.png     # dashboard Power BI completo
-    ├── print_sql_ranking_lojistas.png     # print real do SQL — ranking (RANK)
-    └── print_sql_evolucao_mensal.png      # print real do SQL — evolução mensal (LAG)
+    ├── print_sql_modalidade_mdr.png       # print real do SQL — modalidade x MDR x ticket médio
+    └── print_sql_percentis_segmento.png   # print real do SQL — percentis de ticket por segmento (PERCENTILE_CONT)
 ```
 
 ---
