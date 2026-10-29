@@ -146,7 +146,7 @@ Estrutura padrão de pastas
   01_criar_tabelas.sql    — DDL: schema, PKs, FKs, constraints, índices
   02_carregar_dados.sql   — \COPY dos CSV
   03_limpeza.sql          — nulos, colunas derivadas
-  04_analises.sql         — 10 blocos de KPI
+  04_analises.sql         — 10 blocos de KPI + dezembro x média mensal
 
 03_dados/
   lojistas.csv, maquininhas.csv, transacoes.csv
@@ -154,9 +154,10 @@ Estrutura padrão de pastas
 06_prints/
   fluxograma_ferramentas.png, prints reais da execução no PostgreSQL, print do dashboard final
 
+documentos/
+  DOCUMENTACAO_PROJETO.md, GUIA_POWER_BI.md, 05_post_linkedin.md
+
 README.md
-GUIA_POWER_BI.md
-05_post_linkedin.md
 ```
 
 ---
