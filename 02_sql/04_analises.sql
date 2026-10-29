@@ -186,3 +186,21 @@ FROM transacoes t
 JOIN lojistas l USING (lojista_id)
 GROUP BY l.porte, l.plano_taxa
 ORDER BY tpv DESC;
+
+-- ============================================================================
+-- KPI 11 — Dezembro contra a média mensal (TPV e contagem de transações)
+-- ============================================================================
+WITH mensal AS (
+    SELECT
+        ano_mes,
+        SUM(valor_bruto) FILTER (WHERE status = 'Aprovada') AS tpv,
+        COUNT(*)                                             AS transacoes
+    FROM transacoes
+    GROUP BY ano_mes
+)
+SELECT
+    ROUND(MAX(tpv) FILTER (WHERE ano_mes = '2024-12')::numeric, 2)  AS tpv_dezembro,
+    ROUND(AVG(tpv)::numeric, 2)                                     AS tpv_medio_mensal,
+    ROUND(100.0 * (MAX(tpv) FILTER (WHERE ano_mes = '2024-12') / AVG(tpv) - 1), 2) AS dez_acima_media_tpv_pct,
+    ROUND(100.0 * (MAX(transacoes) FILTER (WHERE ano_mes = '2024-12')::numeric / AVG(transacoes) - 1), 2) AS dez_acima_media_transacoes_pct
+FROM mensal;

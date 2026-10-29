@@ -26,7 +26,7 @@ UPDATE transacoes SET chargeback = CASE WHEN status = 'Chargeback' THEN 1 ELSE 0
 
 -- Coluna derivada: dia_semana (pra eventual análise de sazonalidade semanal)
 ALTER TABLE transacoes ADD COLUMN IF NOT EXISTS dia_semana VARCHAR(15);
-UPDATE transacoes SET dia_semana = TO_CHAR(data_transacao, 'Day');
+UPDATE transacoes SET dia_semana = TRIM(TO_CHAR(data_transacao, 'Day'));
 
 -- Conferência pós-limpeza
 SELECT ano_mes, COUNT(*) FROM transacoes GROUP BY ano_mes ORDER BY ano_mes;
