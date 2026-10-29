@@ -3,6 +3,8 @@ Gera base sintética (mas realista) de uma adquirente de pagamentos (maquininha 
 Calibrada com padrões públicos de mercado (MDR por modalidade, taxa de aprovação, chargeback rate).
 Saída: 03_dados/lojistas.csv, maquininhas.csv, transacoes.csv
 """
+import os
+import sys
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -264,10 +266,12 @@ df_transacoes["antecipada"] = df_transacoes["antecipada"].map({True: "t", False:
 # ---------------------------------------------------------------------------
 # Salvar CSVs (delimitador ; como padrão do portfólio)
 # ---------------------------------------------------------------------------
-out = "/sessions/awesome-determined-cori/mnt/outputs/projeto-adquirencia-pagamentos/03_dados"
-df_lojistas.to_csv(f"{out}/lojistas.csv", sep=";", index=False, encoding="utf-8")
-df_maquininhas.to_csv(f"{out}/maquininhas.csv", sep=";", index=False, encoding="utf-8")
-df_transacoes.to_csv(f"{out}/transacoes.csv", sep=";", index=False, encoding="utf-8")
+# pasta de saída: 03_dados/ ao lado deste script (ou outra pasta passada como argumento)
+out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "03_dados")
+os.makedirs(out, exist_ok=True)
+df_lojistas.to_csv(os.path.join(out, "lojistas.csv"), sep=";", index=False, encoding="utf-8")
+df_maquininhas.to_csv(os.path.join(out, "maquininhas.csv"), sep=";", index=False, encoding="utf-8")
+df_transacoes.to_csv(os.path.join(out, "transacoes.csv"), sep=";", index=False, encoding="utf-8")
 
 print("lojistas:", len(df_lojistas))
 print("maquininhas:", len(df_maquininhas))
